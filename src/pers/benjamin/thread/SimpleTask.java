@@ -17,7 +17,7 @@ public class SimpleTask implements Runnable {
 
     @Override
     public void run() {
-        while (count < 5) {
+        while (count < 1) {
             try {
                 System.out.println(Thread.currentThread() + " - " + name + " - running "
                                 + Thread.currentThread().getPriority());
