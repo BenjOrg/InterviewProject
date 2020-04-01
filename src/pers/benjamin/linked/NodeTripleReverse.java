@@ -9,7 +9,7 @@ public class NodeTripleReverse {
     public static void main(String[] args) {
         Node root = constructNodeList(8);
 
-        Node res = reverseSection(root, 3);
+        Node res = reverseSection(root, 2);
 
         System.out.println("---------------------------------");
         while (res != null) {
@@ -86,9 +86,9 @@ public class NodeTripleReverse {
             while (pre.next != tail) {
                 // 当前节点是pre.next, cur = 1
                 Node cur = pre.next;
-                // 开始节点pre的下一节点是当前节点的下一节点 pre.next = pre.next.next:1
+                // 空出cur
                 pre.next = cur.next;
-                // 当前节点的下一节点是结束节点的下一节点 cur.next = tail.next:3
+                // cur的下一节点添加到尾部
                 cur.next = tail.next;
                 // 结束节点的下一节点是当前节点 tail.next = 1
                 tail.next = cur;
