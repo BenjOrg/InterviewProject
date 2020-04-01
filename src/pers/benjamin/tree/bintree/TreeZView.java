@@ -7,17 +7,39 @@ public class TreeZView {
     public static void main(String[] args) {
         TreeNode root = constructTreeNode();
 
+        boolean flag = true;
+
         ArrayDeque<TreeNode> queue = new ArrayDeque<TreeNode>();
+        ArrayDeque<TreeNode> queue2 = new ArrayDeque<TreeNode>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            TreeNode node = queue.remove();
-            System.out.print(node.val + "    ");
+            TreeNode node = queue.getFirst();
+
             if (node.left != null) {
-                queue.add(node.left);
+                queue2.add(node.left);
             }
             if (node.right != null) {
-                queue.add(node.right);
+                queue2.add(node.right);
             }
+
+            queue.removeFirst();
+
+            if (queue.isEmpty()) {
+                if (flag) {
+                    while (!queue2.isEmpty()) {
+                        queue.add(queue2.removeFirst());
+                    }
+                    flag = false;
+                } else {
+                    while (!queue2.isEmpty()) {
+                        queue.add(queue2.removeLast());
+                    }
+                    flag = true;
+                }
+            }
+
+            System.out.print(node.val + "    ");
+
         }
         System.out.print("\n");
     }
