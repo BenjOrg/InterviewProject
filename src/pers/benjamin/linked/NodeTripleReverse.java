@@ -7,74 +7,98 @@ package pers.benjamin.linked;
 public class NodeTripleReverse {
 
     public static void main(String[] args) {
-        Node root = constructNodeList(6);
+        Node root = constructNodeList(8);
 
-        reverse(root, root.next.next.next);
+        Node res = reverseSection(root, 3);
 
         System.out.println("---------------------------------");
-        while (root != null) {
-            System.out.println(root.val);
-            root = root.next;
+        while (res != null) {
+            System.out.println(res.val);
+            res = res.next;
         }
     }
 
-    private static Node reverse(Node head) {
-        Node result = null;
-        while (head != null) {
-            Node cur = head;
-            head = head.next;
-            cur.next = result;
-            result = cur;
+    private static Node reverse(Node head, Node tail) {
+        Node pre = head;
+        Node cur = head.next;
+        Node tmp;
+
+        while (cur != tail) {
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
         }
 
-        return result;
+        head.next = tail;
+
+        return pre;
     }
 
-    private static void reverse(Node head, Node tail) {
-        Node cur = head;
-        Node pre = null;
+    private static Node reverseSub(Node head, Node tail) {
+        Node pre = head;
+        Node cur = head.next;
+        Node tmp;
+
+        while (cur != tail) {
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+
+        head.next = null;
+
+        return pre;
+    }
+
+    private static Node reverseSection(Node head, int size) {
+        // 虚拟节点dummy
+        Node dummy = new Node(-1);
+
+        // 将dummy链接到链表第一个元素
+        dummy.next = head;
+
+        // 节点pre tail
+        Node pre = dummy;
+        Node tail = dummy;
+
         while (true) {
-            Node next = cur.next;
+            int count = 0;
 
-            if (pre == null) {
-                cur.next = tail.next;
-            } else {
-                cur.next = pre;
+            // 移动tail到指定位置
+            while (tail != null && count != size) {
+                count++;
+                tail = tail.next;
             }
 
-            if (cur.val == tail.val) {
+            // 当tail为null时，表示不满足size数量反转条件
+            if (tail == null) {
                 break;
             }
 
-            pre = cur;
-            cur = next;
-        }
+            // 虚拟头节点tmpHead，反转后为尾节点
+            Node tmpHead = pre.next;
 
-    }
-
-    private static Node reverseSection(Node root, int size) {
-        if (size <= 1) {
-            return root;
-        }
-
-        int total = size(root);
-
-        if (total < size) {
-            return root;
-        }
-
-        while (true) {
-            Node head = root;
-            Node tail = root;
-            for (int i = 0; i < size; i++) {
-                tail = tail.next;
-                if (tail == null) {
-                    return head.next;
-                }
+            // 当pre当下一节点不是tail时
+            // node: 0->1->2->3->4 size:2
+            // pre = 0, tail = 2
+            while (pre.next != tail) {
+                // 当前节点是pre.next, cur = 1
+                Node cur = pre.next;
+                // 开始节点pre的下一节点是当前节点的下一节点 pre.next = pre.next.next:1
+                pre.next = cur.next;
+                // 当前节点的下一节点是结束节点的下一节点 cur.next = tail.next:3
+                cur.next = tail.next;
+                // 结束节点的下一节点是当前节点 tail.next = 1
+                tail.next = cur;
             }
 
-            reverse(head, tail);
+            pre = tmpHead;
+            tail = tmpHead;
         }
+
+        return dummy.next;
 
     }
 
