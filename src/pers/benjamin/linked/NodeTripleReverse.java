@@ -7,7 +7,7 @@ package pers.benjamin.linked;
 public class NodeTripleReverse {
 
     public static void main(String[] args) {
-        Node root = constructNodeList(8);
+        Node root = Node.constructNodeList(8);
 
         Node res = reverseSection(root, 2);
 
@@ -114,16 +114,4 @@ public class NodeTripleReverse {
         return total;
     }
 
-    private static Node constructNodeList(int len) {
-        Node root = new Node(0);
-        Node node = root;
-        Node next;
-        for (int i = 1; i < len; i++) {
-            next = new Node(i);
-            node.next = next;
-            node = next;
-        }
-
-        return root;
-    }
 }
