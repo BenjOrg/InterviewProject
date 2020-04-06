@@ -18,40 +18,6 @@ public class NodeTripleReverse {
         }
     }
 
-    private static Node reverse(Node head, Node tail) {
-        Node pre = head;
-        Node cur = head.next;
-        Node tmp;
-
-        while (cur != tail) {
-            tmp = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = tmp;
-        }
-
-        head.next = tail;
-
-        return pre;
-    }
-
-    private static Node reverseSub(Node head, Node tail) {
-        Node pre = head;
-        Node cur = head.next;
-        Node tmp;
-
-        while (cur != tail) {
-            tmp = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = tmp;
-        }
-
-        head.next = null;
-
-        return pre;
-    }
-
     private static Node reverseSection(Node head, int size) {
         // 虚拟节点dummy
         Node dummy = new Node(-1);
