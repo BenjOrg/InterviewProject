@@ -1,4 +1,4 @@
-package pers.benjamin.algorithm;
+package pers.benjamin.sort;
 
 import java.util.Arrays;
 
