@@ -9,9 +9,11 @@ public class MaxSumRouteTree {
     private static int max = Integer.MIN_VALUE;
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
+        TreeNode root = new TreeNode(-10);
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
 
         solution(root);
         System.out.println(max);
