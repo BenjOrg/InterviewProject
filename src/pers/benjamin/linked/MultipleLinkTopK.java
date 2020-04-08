@@ -1,5 +1,6 @@
 package pers.benjamin.linked;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -21,11 +22,53 @@ public class MultipleLinkTopK {
         nodes[1] = reverse(node2);
         nodes[2] = reverse(node3);
 
-        Node result = sort(nodes, 8);
+        mergeK(nodes, 3);
 
-        while (result.next != null) {
-            System.out.println(result.next.val);
-            result = result.next;
+        // Node result = sort(nodes, 8);
+        //
+        // while (result.next != null) {
+        // System.out.println(result.next.val);
+        // result = result.next;
+        // }
+    }
+
+
+    private static void merger(Node[] nodes, int size) {
+        if (size <= 0) {
+            return;
+        }
+        PriorityQueue<Node> priorityQueue = new PriorityQueue<>(size, (o1, o2) -> o1.val - o2.val);
+        // PriorityQueue<Node> priorityQueue = new PriorityQueue<>(size, (o1, o2) -> o2.val - o1.val);
+        for (Node node : nodes) {
+            while (node != null) {
+                if (priorityQueue.size() >= size) {
+                    if (priorityQueue.peek().val < node.val) {
+                        priorityQueue.poll();
+                        priorityQueue.add(node);
+                    }
+                } else {
+                    priorityQueue.add(node);
+                }
+                node = node.next;
+            }
+        }
+
+        while (!priorityQueue.isEmpty()) {
+            System.out.println(priorityQueue.remove().val);
+        }
+    }
+
+    private static void mergeK(Node[] nodes, int size) {
+        PriorityQueue<Node> priorityQueue = new PriorityQueue<>(size, (o1, o2) -> o2.val - o1.val);
+        for (Node node : nodes) {
+            while (node != null) {
+                priorityQueue.add(node);
+                node = node.next;
+            }
+        }
+
+        while (!priorityQueue.isEmpty()) {
+            System.out.println(priorityQueue.remove().val);
         }
     }
 
