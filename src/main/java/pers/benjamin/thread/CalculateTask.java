@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class CalculateTask implements Runnable {
 
-    private static ThreadLocal<CalculateResult> threadLocal = new ThreadLocal<CalculateResult>() {
+    private static ThreadLocal<CalculateResult> threadLocal = new ThreadLocal<>() {
         @Override
         protected CalculateResult initialValue() {
             return super.initialValue();
@@ -62,7 +62,7 @@ public class CalculateTask implements Runnable {
         }
 
         System.out.println(curResult.getName() + " " + curResult.getValue());
-        threadLocal.remove();
+//        threadLocal.remove();
     }
 
     public CalculateTask(String name, List<CalculateResult> paramList, boolean flag) {

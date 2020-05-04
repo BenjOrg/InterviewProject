@@ -1,5 +1,6 @@
 package pers.benjamin.thread.pool;
 
+import pers.benjamin.Main;
 import pers.benjamin.thread.CalculateResult;
 import pers.benjamin.thread.CalculateTask;
 import pers.benjamin.thread.factory.CustomThreadFactoryBuilder;
@@ -94,7 +95,7 @@ public class FixedThreadPool {
         System.out.println("---------------------------------------------------");
 
         for (CalculateTask task : calculateTasks) {
-            executorService.execute(task);
+            executorService.submit(task);
         }
     }
 
