@@ -8,6 +8,12 @@
     <artifactId>interview</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <java-version>11</java-version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/cglib/cglib -->
         <dependency>
@@ -19,7 +25,12 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>11.0</version>
+            <version>23.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
         </dependency>
 
         <dependency>
