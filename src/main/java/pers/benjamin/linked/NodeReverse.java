@@ -5,19 +5,19 @@ public class NodeReverse {
     public static void main(String[] args) {
         Node root = Node.constructNodeList(8);
 
-        Node result = null;
+        Node prev = null;
 
         while (root != null) {
-            Node cur = root;
-            root = root.next;
-            cur.next = result;
-            result = cur;
+            Node next = root.next;
+            root.next = prev;
+            prev = root;
+            root = next;
 
         }
 
-        while (result.next != null) {
-            System.out.println(result.val);
-            result = result.next;
+        while (prev.next != null) {
+            System.out.println(prev.val);
+            prev = prev.next;
         }
     }
 }
