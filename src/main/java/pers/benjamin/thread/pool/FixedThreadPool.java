@@ -1,13 +1,14 @@
 package pers.benjamin.thread.pool;
 
-import pers.benjamin.Main;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.*;
+
 import pers.benjamin.thread.CalculateResult;
 import pers.benjamin.thread.CalculateTask;
 import pers.benjamin.thread.factory.CustomThreadFactoryBuilder;
-
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.stream.Collectors;
 
 /**
  * FixedThreadPool被称为可重用固定线程数的线程池
