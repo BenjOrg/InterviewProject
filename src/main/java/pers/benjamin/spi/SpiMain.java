@@ -23,7 +23,7 @@ public class SpiMain {
 
         Optional<SpiCommon> spi = StreamSupport.stream(commons.spliterator(), false).findFirst();
 
-        SpiCommon res = spi.isPresent() ? spi.get() : new TwoSpi();
+        SpiCommon res = spi.orElseGet(TwoSpi::new);
 
 
         System.out.println(res.doSpi());
