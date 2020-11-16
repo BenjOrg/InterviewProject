@@ -1,6 +1,7 @@
 package pers.demo.design;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author benjamin
@@ -83,7 +84,7 @@ public class StepVO implements Serializable {
         this.groupVO = groupVO;
     }
 
-    public static class InnerOperationVO implements Serializable{
+    public static class InnerOperationVO implements Serializable {
         private static final long serialVersionUID = 6928189838426950616L;
 
         private Long operationId;
@@ -97,7 +98,7 @@ public class StepVO implements Serializable {
         }
     }
 
-    public static class InnerRouterLinkVO implements Serializable{
+    public static class InnerRouterLinkVO implements Serializable {
         private static final long serialVersionUID = 6303605127586839312L;
 
         private Long linkRouterId;
@@ -111,10 +112,12 @@ public class StepVO implements Serializable {
         }
     }
 
-    public static class InnerGroupVO implements Serializable{
+    public static class InnerGroupVO implements Serializable {
         private static final long serialVersionUID = 1357035920152721665L;
 
         private Long groupId;
+
+        private List<StepVO> groupStepList;
 
         public Long getGroupId() {
             return groupId;
@@ -122,6 +125,14 @@ public class StepVO implements Serializable {
 
         public void setGroupId(Long groupId) {
             this.groupId = groupId;
+        }
+
+        public List<StepVO> getGroupStepList() {
+            return groupStepList;
+        }
+
+        public void setGroupStepList(List<StepVO> groupStepList) {
+            this.groupStepList = groupStepList;
         }
     }
 }

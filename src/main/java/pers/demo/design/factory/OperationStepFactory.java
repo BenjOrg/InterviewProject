@@ -14,17 +14,24 @@ public class OperationStepFactory extends StepFactory implements Serializable {
 
     @Override
     public OperationStep createStep(StepVO vo) {
+        this.validateStep(vo);
+
         OperationStep step = new OperationStep();
         step.setStepId(vo.getStepId());
         step.setStepName(vo.getStepName());
         step.setStepDesc(vo.getStepDesc());
         step.setStepType("OPERATION");
-        step.setSelfInfo(vo);
+        step.setOperationId(vo.getOperationVO().getOperationId());
         return step;
     }
 
     @Override
-    public void validateStep(Step vo) {
-
+    public void validateStep(StepVO vo) {
+        if (null == vo.getOperationVO()) {
+            throw new RuntimeException("operation is null");
+        }
+        if (null == vo.getOperationVO().getOperationId()) {
+            throw new RuntimeException("operation id is null");
+        }
     }
 }

@@ -13,18 +13,15 @@ public class OperationStep extends Step implements Serializable {
     private Long operationId;
 
     @Override
-    public void setSelfInfo(StepVO vo) {
-        if (null == vo.getOperationVO()) {
-            return;
-        }
-        this.setOperationId(vo.getOperationVO().getOperationId());
+    public void checkStepDetail() {
+
     }
 
     public Long getOperationId() {
         return operationId;
     }
 
-    private void setOperationId(Long operationId) {
+    public void setOperationId(Long operationId) {
         this.operationId = operationId;
     }
 }

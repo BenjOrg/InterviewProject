@@ -14,17 +14,19 @@ public class RouterLinkStepFactory extends StepFactory implements Serializable {
 
     @Override
     public RouterLinkStep createStep(StepVO vo) {
+        this.validateStep(vo);
+
         RouterLinkStep step = new RouterLinkStep();
         step.setStepId(vo.getStepId());
         step.setStepName(vo.getStepName());
         step.setStepDesc(vo.getStepDesc());
         step.setStepType("LINK");
-        step.setSelfInfo(vo);
+        step.setRouterId(vo.getRouterLinkVO().getLinkRouterId());
         return step;
     }
 
     @Override
-    public void validateStep(Step vo) {
+    public void validateStep(StepVO vo) {
 
     }
 }

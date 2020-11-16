@@ -13,5 +13,5 @@ public abstract class StepFactory implements Serializable {
 
     abstract public Step createStep(StepVO vo);
 
-    abstract public void validateStep(Step vo);
+    abstract public void validateStep(StepVO vo);
 }

@@ -1,5 +1,7 @@
 package pers.demo.design;
 
+import static com.alibaba.fastjson.serializer.SerializerFeature.PrettyFormat;
+
 import com.alibaba.fastjson.JSON;
 import pers.demo.design.domain.GroupStep;
 import pers.demo.design.domain.OperationStep;
@@ -38,8 +40,12 @@ public class Main {
         vo3.setStepDesc("C");
         vo3.setStepDesc("C");
         StepVO.InnerRouterLinkVO linkVO = new StepVO.InnerRouterLinkVO();
-        groupVO.setGroupId(103L);
+        linkVO.setLinkRouterId(3L);
         vo3.setRouterLinkVO(linkVO);
+
+        System.out.println(JSON.toJSONString(vo1, PrettyFormat));
+        System.out.println(JSON.toJSONString(vo2, PrettyFormat));
+        System.out.println(JSON.toJSONString(vo3, PrettyFormat));
 
         GroupStepFactory gf = new GroupStepFactory();
         GroupStep s1 = gf.createStep(vo1);
@@ -48,8 +54,9 @@ public class Main {
         RouterLinkStepFactory rf = new RouterLinkStepFactory();
         RouterLinkStep s3 = rf.createStep(vo3);
 
-        System.out.println(JSON.toJSONString(s1));
-        System.out.println(JSON.toJSONString(s2));
-        System.out.println(JSON.toJSONString(s3));
+        System.out.println("-----------------result-----------------");
+        System.out.println(JSON.toJSONString(s1, PrettyFormat));
+        System.out.println(JSON.toJSONString(s2, PrettyFormat));
+        System.out.println(JSON.toJSONString(s3, PrettyFormat));
     }
 }

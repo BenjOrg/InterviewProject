@@ -13,18 +13,15 @@ public class RouterLinkStep extends Step implements Serializable {
     private Long routerId;
 
     @Override
-    public void setSelfInfo(StepVO vo) {
-        if (null == vo.getRouterLinkVO()) {
-            return;
-        }
-        this.setRouterId(vo.getRouterLinkVO().getLinkRouterId());
+    public void checkStepDetail() {
+
     }
 
     public Long getRouterId() {
         return routerId;
     }
 
-    private void setRouterId(Long routerId) {
+    public void setRouterId(Long routerId) {
         this.routerId = routerId;
     }
 }

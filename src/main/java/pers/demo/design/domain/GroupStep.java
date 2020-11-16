@@ -1,6 +1,7 @@
 package pers.demo.design.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import pers.demo.design.StepVO;
 
@@ -12,19 +13,28 @@ public class GroupStep extends Step implements Serializable {
 
     private Long groupId;
 
+    private List<OperationStep> groupStepList;
+
     @Override
-    public void setSelfInfo(StepVO vo) {
-        if (null == vo.getGroupVO()) {
-            return;
-        }
-        this.setGroupId(vo.getGroupVO().getGroupId());
+    public void checkStepDetail() {
+        super.isStepTypeValid();
+
+
     }
 
     public Long getGroupId() {
         return groupId;
     }
 
-    private void setGroupId(Long groupId) {
+    public void setGroupId(Long groupId) {
         this.groupId = groupId;
+    }
+
+    public List<OperationStep> getGroupStepList() {
+        return groupStepList;
+    }
+
+    public void setGroupStepList(List<OperationStep> groupStepList) {
+        this.groupStepList = groupStepList;
     }
 }

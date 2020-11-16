@@ -1,8 +1,7 @@
 package pers.demo.design.domain;
 
 import java.io.Serializable;
-
-import pers.demo.design.StepVO;
+import java.util.Arrays;
 
 /**
  * @author benjamin
@@ -14,13 +13,20 @@ public abstract class Step implements Serializable {
     private String stepName;
     private String stepDesc;
     private String stepType;
+    private Long sequence;
 
     private Boolean keyStepFlag;
     private Boolean entryStepFlag;
     private Boolean doneStepFlag;
     private Boolean returnStepFlag;
 
-    abstract public void setSelfInfo(StepVO vo);
+    abstract public void checkStepDetail();
+
+    public void isStepTypeValid() {
+        if (!Arrays.asList("OPERATION", "GROUP", "ROUTER").contains(stepType)) {
+            throw new RuntimeException("type is not valid");
+        }
+    }
 
     public Long getStepId() {
         return stepId;
@@ -54,6 +60,14 @@ public abstract class Step implements Serializable {
         this.stepType = stepType;
     }
 
+    public Long getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Long sequence) {
+        this.sequence = sequence;
+    }
+
     public Boolean getKeyStepFlag() {
         return keyStepFlag;
     }
@@ -70,35 +84,35 @@ public abstract class Step implements Serializable {
         return returnStepFlag;
     }
 
-    public void enableKeyStep(){
+    public void enableKeyStep() {
         this.keyStepFlag = Boolean.TRUE;
     }
 
-    public void disableKeyStep(){
+    public void disableKeyStep() {
         this.keyStepFlag = Boolean.FALSE;
     }
 
-    public void enableEntryStep(){
+    public void enableEntryStep() {
         this.entryStepFlag = Boolean.TRUE;
     }
 
-    public void disableEntryStep(){
+    public void disableEntryStep() {
         this.entryStepFlag = Boolean.FALSE;
     }
 
-    public void enableDoneStep(){
+    public void enableDoneStep() {
         this.doneStepFlag = Boolean.TRUE;
     }
 
-    public void disableDoneStep(){
+    public void disableDoneStep() {
         this.doneStepFlag = Boolean.FALSE;
     }
 
-    public void enableReturnStep(){
+    public void enableReturnStep() {
         this.returnStepFlag = Boolean.TRUE;
     }
 
-    public void disableReturnStep(){
+    public void disableReturnStep() {
         this.returnStepFlag = Boolean.FALSE;
     }
 }
